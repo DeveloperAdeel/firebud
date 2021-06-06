@@ -1,0 +1,25 @@
+{
+    "name": "firebud",
+    "version": "0.0.1",
+    "description": "Electron & Cross-browser Devtools Utility",
+    "main": "firebud.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/DeveloperAdeel/firebud.git"
+    },
+    "keywords": [
+        "firebud",
+        "devtools",
+        "devtools-detector",
+        "devtools-observer"
+    ],
+    "author": "Adeel Khan",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/DeveloperAdeel/firebud/issues"
+    },
+    "homepage": "https://github.com/DeveloperAdeel/firebud#readme"
+}
