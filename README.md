@@ -5,25 +5,26 @@ Electron &amp; Cross-browser Devtools Utility
 
 ## Electron
 `npm i firebud`
-or
-`npm i fieebud --save`
 
 ## Browser
-`<script type="module" src="https://cdn.jsdelivr.net/npm/elxai@1.2.5/index.js"></script>`
+```html
+<script src="https://cdn.jsdelivr.net/npm/firebud@latest/firebud.min.js"></script>
+```
+
 # Usage
 
-## Getting the request
+## Simple APIs / Events
 
-```
-// Firebud.on("open", console.log)
-{
-  "opened": true,
-  "orientation": "vertical"
-}
+```javascript
+Firebud.on("open", console.log)
+// {
+//    "opened": true,
+//    "orientation": "vertical"
+// }
 
-// Firebud.on("close", console.log)
-{
-  "opened": false,
-  "orientation": null
-}
+Firebud.on("close", console.log)
+// {
+//    "opened": false,
+//    "orientation": null
+// }
 ```

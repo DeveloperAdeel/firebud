@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h1 id="devtool-status">Devtools Status</h1>
+        <pre
+            style="
+                background: azure;
+                padding: 20px 40px;
+                border: 1px solid #ccc;
+            "
+        >
+        Closed
+        </pre>
+
+        <!--script src="https://cdn.jsdelivr.net/npm/firebud@latest/firebud.min.js"></script--->
+        <script src="../firebud.js"></script>
+
+        <script>
+            document.querySelector("pre").innerHTML = Firebud.opened
+                ? "Opened"
+                : "Closed";
+
+            Firebud.on(
+                "open",
+                (e) => (
+                    console.log(e),
+                    (document.querySelector("pre").innerHTML = JSON.stringify(
+                        e,
+                        undefined,
+                        2
+                    ))
+                )
+            );
+
+            Firebud.on(
+                "close",
+                (e) => (
+                    console.log(e),
+                    (document.querySelector("pre").innerHTML = JSON.stringify(
+                        e,
+                        undefined,
+                        2
+                    ))
+                )
+            );
+        </script>
+    </body>
+</html>

@@ -22,6 +22,13 @@
                 }
             );
             this.opened = false;
+            this._proto = false;
+            this.screen = {
+                innerX: 0,
+                innerY: 0,
+                outerX: 0,
+                outerY: 0,
+            };
             this.start();
         }
 
@@ -52,32 +59,63 @@
                     });
                 }
             }
+
             this.fire();
+            this.protoFire();
         }
 
-        fire() {
+        protoFire() {
+            const element = new Image();
+            Object.defineProperty(element, "id", {
+                get: () => this.fire(true),
+            });
+            console.log("%c", element);
+        }
+
+        fire(forced = false) {
             let widthThreshold =
                 window.outerWidth - window.innerWidth > this.threshold;
             let heightThreshold =
                 window.outerHeight - window.innerHeight > this.threshold;
-            let orientation = widthThreshold ? "vertical" : "horizontal";
+            let orientation = widthThreshold
+                ? "vertical"
+                : heightThreshold
+                ? "horizontal"
+                : "popup";
+
             if (
-                !(heightThreshold && widthThreshold) &&
-                ((window.Firebug &&
-                    window.Firebug.chrome &&
-                    window.Firebug.chrome.isInitialized) ||
-                    widthThreshold ||
-                    heightThreshold)
+                window.innerWidth === this.screen.innerX &&
+                window.innerHeight === this.screen.innerY &&
+                !forced
+            )
+                return false;
+
+            this.screen = {
+                innerX: window.innerWidth,
+                innerY: window.innerHeight,
+                outerX: window.outerWidth,
+                outerY: window.outerHeight,
+            };
+
+            if (
+                (!(heightThreshold && widthThreshold) &&
+                    ((window.Firebug &&
+                        window.Firebug.chrome &&
+                        window.Firebug.chrome.isInitialized) ||
+                        widthThreshold ||
+                        heightThreshold)) ||
+                forced
             ) {
-                if (!this.opened) {
+                if (!this.opened || forced) {
                     this.events.open({
                         opened: true,
                         orientation: orientation,
                     });
                 }
                 this.opened = true;
+                this._proto = forced;
             } else {
-                if (this.opened)
+                if (this.opened && !this._proto)
                     this.events.close({
                         opened: false,
                         orientation: null,

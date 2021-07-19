@@ -1,11 +1,9 @@
 {
     "name": "firebud",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Electron & Cross-browser Devtools Utility",
     "main": "firebud.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
+    "scripts": {},
     "repository": {
         "type": "git",
         "url": "git+https://github.com/DeveloperAdeel/firebud.git"
